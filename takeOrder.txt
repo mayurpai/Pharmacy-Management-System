@@ -1,0 +1,14 @@
+**********************************************************************
+| DRUGS ID |  DRUG'S NAME  |    DRUG'S PURPOSE    | DRUGS PRICE(Rs.) |
+**********************************************************************
+|   0001   |   Dolo 650    |    Paracetamol       |    Rs. 200.00    |
+|   0002   |   CITRA C     |    Vitamin C(500mg)  |    Rs. 200.00    |
+|   0003   |   Bupropion   |    Antidepressants   |    Rs. 500.00    |
+|   0004   |   Zoloft      |    Antianxiety       |    Rs. 400.00    |
+|   0005   |   Sumitop     |    Antimigraine      |    Rs. 500.00    |
+|   0006   |   Omeprazole  |    Gastric Tablets   |    Rs. 300.00    |
+|   0007   |   Digene      |    Antacid Tablets   |    Rs. 100.00    |
+|   0008   |   HealthVit   |    Multivitamin      |    Rs. 400.00    |
+|   0009   |   Naproxen    |    Sinus             |    Rs. 300.00    |
+|   0010   |   Neurobion   |    Vitamin           |    Rs. 300.00    |
+**********************************************************************
