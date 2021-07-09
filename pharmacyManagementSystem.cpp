@@ -59,7 +59,7 @@ pharmacyManagementSystem pharmacyManagementSystemObj;
     int choice;
     do
     {
-        cout << "\t\t\t    Pharmacy Management System \n";
+        cout << "\n\t\t\t    Pharmacy Management System \n";
         cout << "\t\t==================================================\n\n";
         cout << "\t\t--------------------------------------------------\n";
         cout << "\t\t||\t1. Search For The Medicine \t\t||\n";
@@ -205,7 +205,78 @@ void pharmacyManagementSystem::takeOrder() {
 
 void pharmacyManagementSystem::deleteOrder() {}
 void pharmacyManagementSystem::modify() {}
-void pharmacyManagementSystem::orderList() {}
+
+void pharmacyManagementSystem::orderList() {
+	int i, num, num2;	
+	bool found = false;			// Search Variable
+	system("cls");
+	node *temp;
+	temp=start_ptr;
+	
+	cout<<"Enter the Reciept Number To Print The Reciept : ";
+	cin>>num2;
+	cout<<"\n";
+	cout<<"====================================================="<<endl;
+	cout <<"List Of Orders :\n"; 
+	cout<<"====================================================="<<endl;
+
+
+	if(temp == NULL)    // Entered Receipt Number Is Invalid
+	{
+		cout << "No Such Receipt Number Found In Our Record!\nKindly Enter The Correct Receipt Number\n\n\n";
+	}
+	while(temp !=NULL && !found)
+	{
+		if (temp->recieptNumber==num2)
+		{
+			found = true;
+		}
+		else
+		{
+			temp = temp -> next;
+		}
+        if (found)    // Print The Receipt
+        {
+		cout <<"Reciept Number : "<<temp->recieptNumber;
+		cout <<"\n";
+		cout<<"Customer Name: "<<temp->customerName<<endl;
+		cout<<"Order Date : "<<temp->date<<endl;
+		cout<<"_____________________________________________________"<<endl;
+		cout << "=====================================================" << endl;
+		cout << "|  Medicine Name  |  	Quantity    |  Total Price  |" << endl;
+		cout << "=====================================================" << endl;
+		for (i=0;i<temp->x;i++)
+		{
+			cout<< "|    " <<temp->medicineName[temp->menu2[i]-1] << "     ";
+			cout<< "|        " <<temp->quantity[i] << "        ";
+			cout<< "|    " <<" Rs." << temp->amount[i]<< "    |" <<endl;
+			cout<<"_____________________________________________________"<<endl;
+		}
+		
+		temp->total = temp->amount[0]+temp->amount[1]+temp->amount[2]+temp->amount[3]+temp->amount[4]+temp->amount[5]+temp->amount[6]+temp->amount[7]
+						+temp->amount[8]+temp->amount[9];
+		cout<<"Total Bill : "<<" Rs."<< temp->total << ".00" << endl;
+		cout<<"\n";
+		b: cout << "Type In The Amount To Be Payed : " << endl;
+           cin >> num;
+        if (num < temp->total) {
+            cout << "Kindly Pay The Prescribed Amount!\n" << endl;
+            goto b;
+        }
+        else if (num > temp->total) {
+            cout <<"_____________________________________________________\n";
+            cout<<"Payment Done Successfully!" << endl;
+            cout<<"Here's Your Change Of Rs. " << num-temp->total << ".00" << endl;
+            cout<<"Thank You" << endl;
+        }
+        else {
+            cout<<"Payment Done Successfully!\nThank You\n";
+            cout <<"_____________________________________________________\n";
+		}
+    }
+}
+}
+
 void pharmacyManagementSystem::dailySummary() {}
 void pharmacyManagementSystem::exit() {}
 
