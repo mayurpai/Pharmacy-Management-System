@@ -21,7 +21,7 @@ class pharmacyManagementSystem
 {
 public:
     void mainMenu();            // Pharmacy Management System Main Menu
-    void searchMedicine();      // Search For Certain Medicine
+    void search();      // Search For Certain Medicine
     void takeOrder();           // Orders To Be Taken
     void deleteOrder();         // Delete The Medicine
     void modify();              // Modify The Medicine/ Customer Information
@@ -62,7 +62,7 @@ pharmacyManagementSystem pharmacyManagementSystemObj;
         cout << "\n\t\t\t    Pharmacy Management System \n";
         cout << "\t\t==================================================\n\n";
         cout << "\t\t--------------------------------------------------\n";
-        cout << "\t\t||\t1. Search For The Medicine \t\t||\n";
+        cout << "\t\t||\t1. Search For The Medicine/Customer \t||\n";
         cout << "\t\t||\t2. New Medicine Order \t\t\t||\n";
         cout << "\t\t||\t3. Delete Latest Medicine Order Details ||\n";
         cout << "\t\t||\t4. Modify Order List \t\t\t||\n";
@@ -76,7 +76,7 @@ pharmacyManagementSystem pharmacyManagementSystemObj;
         {
         case 1:
         {
-            pharmacyManagementSystemObj.searchMedicine();
+            pharmacyManagementSystemObj.search();
             break;
         }
 
@@ -133,7 +133,58 @@ pharmacyManagementSystem pharmacyManagementSystemObj;
     // return 0;
 }
 
-void pharmacyManagementSystem::searchMedicine() {}
+void pharmacyManagementSystem::search() {
+    system("CLS");
+    string search;
+    string line;
+    int choice, offset, flag = 0;
+    node *temp; 
+	temp = new node;
+    ifstream in;
+    cout<<"====================================================="<<endl;
+	cout <<"Search :\n"; 
+	cout<<"====================================================="<<endl;
+    cout << "1. Search For Medicine" << endl;
+    cout << "2. Search For Customer\n" << endl;
+    cout << "Enter Your Choice : ";
+    cin >> choice;
+    switch (choice)
+    {
+    case 1 : 
+        in.open("takeOrder.txt");
+        cout << "Enter The Name Of The Medicine You Wish To Search In The Records : ";
+        cin >> search;
+        break;
+
+    case 2 : 
+        in.open("takeCustomerInfo.txt");
+        cout << "Enter The Name Of The Customer You Wish To Search In The Records : ";
+        cin >> search;
+        break;
+
+    default:
+        break;
+    }
+    cout << endl;
+    if (in.is_open()) {
+        while(!in.eof()) {
+            getline(in,line);
+            offset = line.find(search, 0);
+            if (offset != string::npos) {
+                cout << "The Searched Entity " << search << " Is Found In The Records!" << endl;
+                flag = 1;
+            }
+        }
+        if (!flag) {
+            cout << "The Searched Entity " << search << " Isn't Found In The Records!" << endl;
+        }
+        in.close();
+    }
+    else {
+        cout << "Couldn't Open File" <<endl;
+        system("PAUSE");
+    }
+}
 
 void pharmacyManagementSystem::takeOrder() {
     system("CLS");
@@ -187,6 +238,7 @@ void pharmacyManagementSystem::takeOrder() {
 	}
     cout << "You've Been Charged With Amount Of Rs. "<< totalPrice << ".00" <<endl;
     out << "Total Price : Rs. " << totalPrice << ".00\n" << endl;
+    out << "==================================\n"<< endl;
 	cout <<"==========================================================================="<<endl;
     cout << "Order Placed Successfully"<<endl;
     cout <<"==========================================================================="<<endl;
@@ -212,6 +264,7 @@ void pharmacyManagementSystem::orderList() {
 	system("cls");
 	node *temp;
 	temp=start_ptr;
+    float totalPrice = 0;
 	
 	cout<<"Enter the Reciept Number To Print The Reciept : ";
 	cin>>num2;
@@ -251,22 +304,20 @@ void pharmacyManagementSystem::orderList() {
 			cout<< "|        " <<temp->quantity[i] << "        ";
 			cout<< "|    " <<" Rs." << temp->amount[i]<< "    |" <<endl;
 			cout<<"_____________________________________________________"<<endl;
+            totalPrice = totalPrice + temp->amount[i]; 
 		}
-		
-		temp->total = temp->amount[0]+temp->amount[1]+temp->amount[2]+temp->amount[3]+temp->amount[4]+temp->amount[5]+temp->amount[6]+temp->amount[7]
-						+temp->amount[8]+temp->amount[9];
-		cout<<"Total Bill : "<<" Rs."<< temp->total << ".00" << endl;
+		cout<<"Total Bill : "<<" Rs."<< totalPrice << ".00" << endl;
 		cout<<"\n";
 		b: cout << "Type In The Amount To Be Payed : ";
            cin >> num;
-        if (num < temp->total) {
+        if (num < totalPrice) {
             cout << "Kindly Pay The Prescribed Amount!\n" << endl;
             goto b;
         }
-        else if (num > temp->total) {
+        else if (num > totalPrice) {
             cout <<"_____________________________________________________\n";
             cout<<"Payment Done Successfully!" << endl;
-            cout<<"Here's Your Change Of Rs. " << num-temp->total << ".00" << endl;
+            cout<<"Here's Your Change Of Rs. " << num-totalPrice << ".00" << endl;
             cout<<"Thank You" << endl;
         }
         else {

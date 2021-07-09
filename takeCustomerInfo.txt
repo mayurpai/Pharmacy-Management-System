@@ -1,21 +1,26 @@
 Reciept Number : 1
 Customer Name : Mayur
-Date : 19/11/2020
+Date : 19/11/2000
 Number Of Medicine Ordered : 2
-Medicine Name : Dolo 650
+Medicine Name : Sumitop
 Medicine Quantity : 2
 Medicine Name : Bupropion
-Medicine Quantity : 2
-Total Price : Rs. 1400.00
+Medicine Quantity : 4
+Total Price : Rs. 3000.00
+
+==================================
 
 Reciept Number : 2
-Customer Name : Prathiksha
-Date : 14/05/2020
+Customer Name : Prathi
+Date : 18/05/2020
 Number Of Medicine Ordered : 3
-Medicine Name : Zoloft
-Medicine Quantity : 5
+Medicine Name : Dolo 650
+Medicine Quantity : 4
 Medicine Name : CITRA C
+Medicine Quantity : 3
+Medicine Name : Omeprazole
 Medicine Quantity : 1
-Medicine Name : Bupropion
-Medicine Quantity : 2
-Total Price : Rs. 3200.00
+Total Price : Rs. 1700.00
+
+==================================
+
