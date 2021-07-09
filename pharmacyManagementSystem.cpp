@@ -142,9 +142,11 @@ void pharmacyManagementSystem::takeOrder() {
     string takeOrderText;
 	cout <<"\nSelect The Medicines That You Would Like To Buy\n";
 	cout <<"------------------------------------------------ \n\n";
-	node *temp;
+	node *temp; 
 	temp = new node;
-    ofstream out("takeCustomerInfo.txt");
+    // ofstream out("takeCustomerInfo.txt");
+    ofstream out;
+    out.open("takeCustomerInfo.txt",ios::out | ios::app);
 	ifstream in("takeOrder.txt");
     for(i=0;i<14;i++) {
         getline(in, takeOrderText);
@@ -184,7 +186,7 @@ void pharmacyManagementSystem::takeOrder() {
         totalPrice = totalPrice + temp->amount[i]; 
 	}
     cout << "You've Been Charged With Amount Of Rs. "<< totalPrice << ".00" <<endl;
-    out << "Total Price : " << totalPrice << endl;
+    out << "Total Price : Rs. " << totalPrice << ".00\n" << endl;
 	cout <<"==========================================================================="<<endl;
     cout << "Order Placed Successfully"<<endl;
     cout <<"==========================================================================="<<endl;
