@@ -19,4 +19,3 @@ Medicine Quantity : 1
 Medicine Name : Bupropion
 Medicine Quantity : 2
 Total Price : Rs. 3200.00
-

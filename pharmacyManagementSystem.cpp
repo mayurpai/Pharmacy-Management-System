@@ -223,7 +223,7 @@ void pharmacyManagementSystem::orderList() {
 
 	if(temp == NULL)    // Entered Receipt Number Is Invalid
 	{
-		cout << "No Such Receipt Number Found In Our Record!\nKindly Enter The Correct Receipt Number\n\n\n";
+		cout << "No Such Receipt Number Found In Our Record!\nKindly Enter The Correct Receipt Number\n\n";
 	}
 	while(temp !=NULL && !found)
 	{
@@ -257,7 +257,7 @@ void pharmacyManagementSystem::orderList() {
 						+temp->amount[8]+temp->amount[9];
 		cout<<"Total Bill : "<<" Rs."<< temp->total << ".00" << endl;
 		cout<<"\n";
-		b: cout << "Type In The Amount To Be Payed : " << endl;
+		b: cout << "Type In The Amount To Be Payed : ";
            cin >> num;
         if (num < temp->total) {
             cout << "Kindly Pay The Prescribed Amount!\n" << endl;
