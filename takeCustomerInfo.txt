@@ -1,0 +1,18 @@
+Reciept Number : 1
+Customer Name : Mayur
+Date : 1
+Number Of Medicine Ordered : 1
+Medicine Name : Dolo 650
+Medicine Quantity : 1
+Total Price : Rs. 200.00
+
+==================================
+
+Medicine Name : Dolo 650
+Medicine Quantity : 3
+Medicine Name : Zoloft
+Medicine Quantity : 4
+Total Price : Rs. 2200.00
+
+==================================
+
