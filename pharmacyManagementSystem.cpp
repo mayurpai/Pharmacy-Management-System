@@ -28,6 +28,7 @@ public:
     void orderList();           // Display The Order List
     void dailySummary();        // Display The Summary List
     void exit();                // Exit Function
+    void displayMedicine();     // Displays The Set Of Medicine
     pharmacyManagementSystem(); // Constuctor
 };
 
@@ -69,7 +70,8 @@ void pharmacyManagementSystem::mainMenu()
         cout << "||\t4. Modify Order List \t\t\t||\n";
         cout << "||\t5. Print Reciept And Make Payment \t||\n";
         cout << "||\t6. Daily Summary Of Total Sales \t||\n";
-        cout << "||\t7. Exit \t\t\t\t||\n";
+        cout << "||\t7. Display Available Medicine \t\t||\n";
+        cout << "||\t8. Exit \t\t\t\t||\n";
         cout << "--------------------------------------------------\n";
         cout << "Enter Your Choice: ";
         cin >> choice;
@@ -113,6 +115,12 @@ void pharmacyManagementSystem::mainMenu()
 
         case 7:
         {
+            pharmacyManagementSystemObj.displayMedicine();
+            break;
+        }
+
+        case 8:
+        {
             pharmacyManagementSystemObj.exit();
             system("CLS");
             break;
@@ -125,7 +133,7 @@ void pharmacyManagementSystem::mainMenu()
             break;
         }
         }
-    } while (choice != 7);
+    } while (choice != 8);
 }
 
 // Search Function
@@ -267,7 +275,61 @@ void pharmacyManagementSystem::takeOrder()
 }
 
 // Delete Order Function
-void pharmacyManagementSystem::deleteOrder() {}
+void pharmacyManagementSystem::deleteOrder() {
+    system("CLS");
+	int i, num, count;
+    ofstream out;
+    out.open("takeCustomerInfo.txt", ios::out | ios::app);
+
+    cout<<"Enter the Receipt Number You Wish To Delete : ";
+    cin>>num;
+    node *q;
+	node *temp;
+	bool found;
+
+	if(start_ptr == NULL)
+		cerr<<"Empty List, No Entries Detected To Delete\n";
+	else
+	{
+		if(start_ptr-> recieptNumber == num)
+		{
+			q = start_ptr;
+			start_ptr = start_ptr->next;
+			count--;
+			if(start_ptr == NULL)
+			last = NULL;
+			delete q;
+			cout<<"The Reciept is Deleted Successfully!"<<endl;
+		}
+		else
+		{
+			found = false;
+			temp = start_ptr;
+			q = start_ptr->next;
+		while((!found) && (q != NULL))
+		{
+  			if(q-> recieptNumber!= num) 
+			{
+				temp = q;
+				q = q-> next;
+			}
+			else
+				found = true;
+		}
+			if(found)
+			{
+				temp->next = q->next;
+				count--;
+				if(last == q) 
+				last = temp;
+				delete q;
+				cout<<"The Reciept is Deleted Successfully!"<<endl;
+			}
+			else
+				cout<<"Sorry, No Such Receipt Found!\n"<<endl;
+			}
+		} 
+}
 
 // Modify Order/Customer Details Function
 void pharmacyManagementSystem::modify()
@@ -303,14 +365,18 @@ void pharmacyManagementSystem::modify()
             {
                 cout << "Change Reciept Number : ";
                 cin >> temp->recieptNumber;
+                out << "Reciept Number : " << temp->recieptNumber << endl;
                 cout << "Change Customer Name : ";
                 cin >> temp->customerName;
+                out << "Customer Name : " << temp->customerName << endl;
                 cout << "Change Date : ";
                 cin >> temp->date;
-                cout << "How many New Medicine would you like to Change:" << endl;
-                cout << "( Maximum is 10 order for each transaction ) \n";
-                cout << "  ";
+                out << "Date : " << temp->date << endl;
+                cout << "" << endl;
+                cout << "\"NOTE : Maximum 10 Medicine Can Be Ordered Per Transaction\" \n";
+                cout << "Please Enter The Total Count Of Medicine You Would Like To Order: ";
                 cin >> temp->x;
+                out << "Number Of Medicine Ordered : " << temp->x << endl;
                 if (temp->x > 10)
                 {
                     cout << "The Medicine you order is exceed the maximum amount of order !";
@@ -474,10 +540,26 @@ void pharmacyManagementSystem::modify()
                 cout << "_____________________________________________________\n";
 
                 temp = temp->next;
-                system("PAUSE");
-                system("CLS");
             }
         }
+        system("PAUSE");
+        system("CLS");
+    }
+
+    // Display Medicine Function 
+    void pharmacyManagementSystem::displayMedicine()
+    {
+        cout << endl;
+        system("CLS");
+        string takeOrderText;
+        ifstream in("takeOrder.txt");
+        for (int i = 0; i < 14; i++)
+        {
+            getline(in, takeOrderText);
+            cout << takeOrderText << endl;
+        }
+        cout << "" << endl;
+        system("PAUSE");
     }
 
     // Exit Function
