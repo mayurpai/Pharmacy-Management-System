@@ -21,7 +21,7 @@ class pharmacyManagementSystem
 {
 public:
     void mainMenu();            // Pharmacy Management System Main Menu
-    void search();      // Search For Certain Medicine
+    void search();              // Search For Certain Medicine
     void takeOrder();           // Orders To Be Taken
     void deleteOrder();         // Delete The Medicine
     void modify();              // Modify The Medicine/ Customer Information
@@ -31,7 +31,7 @@ public:
     pharmacyManagementSystem(); // Constuctor
 };
 
-pharmacyManagementSystem::pharmacyManagementSystem() {} // Constructor For Class pharmacyManagementSystem
+pharmacyManagementSystem::pharmacyManagementSystem() {}    // Constructor For Class pharmacyManagementSystem
 
 // Structure Of Type Node
 struct node
@@ -59,18 +59,18 @@ pharmacyManagementSystem pharmacyManagementSystemObj;
     int choice;
     do
     {
-        cout << "\n\t\t\t    Pharmacy Management System \n";
-        cout << "\t\t==================================================\n\n";
-        cout << "\t\t--------------------------------------------------\n";
-        cout << "\t\t||\t1. Search For The Medicine/Customer \t||\n";
-        cout << "\t\t||\t2. New Medicine Order \t\t\t||\n";
-        cout << "\t\t||\t3. Delete Latest Medicine Order Details ||\n";
-        cout << "\t\t||\t4. Modify Order List \t\t\t||\n";
-        cout << "\t\t||\t5. Print Reciept And Make Payment \t||\n";
-        cout << "\t\t||\t6. Daily Summary Of Total Sales \t||\n";
-        cout << "\t\t||\t7. Exit \t\t\t\t||\n";
-        cout << "\t\t--------------------------------------------------\n";
-        cout << "\t\tEnter Your Choice: ";
+        cout << "\n\t    Pharmacy Management System \n";
+        cout << "==================================================\n\n";
+        cout << "--------------------------------------------------\n";
+        cout << "||\t1. Search For The Medicine/Customer \t||\n";
+        cout << "||\t2. New Medicine Order \t\t\t||\n";
+        cout << "||\t3. Delete Latest Medicine Order Details ||\n";
+        cout << "||\t4. Modify Order List \t\t\t||\n";
+        cout << "||\t5. Print Reciept And Make Payment \t||\n";
+        cout << "||\t6. Daily Summary Of Total Sales \t||\n";
+        cout << "||\t7. Exit \t\t\t\t||\n";
+        cout << "--------------------------------------------------\n";
+        cout << "Enter Your Choice: ";
         cin >> choice;
         switch (choice)
         {
@@ -89,50 +89,44 @@ pharmacyManagementSystem pharmacyManagementSystemObj;
         case 3:
         {
             pharmacyManagementSystemObj.deleteOrder();
-            system("PAUSE");
             break;
         }
 
         case 4:
         {
             pharmacyManagementSystemObj.modify();
-            system("PAUSE");
             break;
         }
 
         case 5:
         {
             pharmacyManagementSystemObj.orderList();
-            system("PAUSE");
             break;
         }
 
         case 6:
         {
             pharmacyManagementSystemObj.dailySummary();
-            system("PAUSE");
             break;
         }
 
         case 7:
         {
             pharmacyManagementSystemObj.exit();
-            goto a;
+            system("CLS");
             break;
         }
 
         default:
         {
-            cout << "\t\tYou Entered An Invalid Key Input\n\t\tKindly, Re-enter The Input! \n" << endl;
+            cout << "You Entered An Invalid Key Input\nKindly, Re-enter The Input! \n" << endl;
             break;
         }
         }
     } while (choice != 7);
-    a:    // Goto
-    cout << "\t\tThank You So Much!" << endl;
-    // return 0;
 }
 
+// Search Function
 void pharmacyManagementSystem::search() {
     system("CLS");
     string search;
@@ -152,13 +146,13 @@ void pharmacyManagementSystem::search() {
     {
     case 1 : 
         in.open("takeOrder.txt");
-        cout << "Enter The Name Of The Medicine You Wish To Search In The Records : ";
+        cout << "Enter The Name Of The Medicine You Wish To Search In The Records : ";    // Search For Medicine
         cin >> search;
         break;
 
     case 2 : 
         in.open("takeCustomerInfo.txt");
-        cout << "Enter The Name Of The Customer You Wish To Search In The Records : ";
+        cout << "Enter The Name Of The Customer You Wish To Search In The Records : ";    // Search For Customer
         cin >> search;
         break;
 
@@ -171,12 +165,12 @@ void pharmacyManagementSystem::search() {
             getline(in,line);
             offset = line.find(search, 0);
             if (offset != string::npos) {
-                cout << "The Searched Entity " << search << " Is Found In The Records!" << endl;
+                cout << "The Searched Entity " << search << " Is Found In The Records!" << endl;    // Searched Entity Found
                 flag = 1;
             }
         }
         if (!flag) {
-            cout << "The Searched Entity " << search << " Isn't Found In The Records!" << endl;
+            cout << "The Searched Entity " << search << " Isn't Found In The Records!" << endl;    // Searched Entity Not Found
         }
         in.close();
     }
@@ -184,8 +178,11 @@ void pharmacyManagementSystem::search() {
         cout << "Couldn't Open File" <<endl;
         system("PAUSE");
     }
+    system("PAUSE");
+    system("CLS");
 }
 
+// Take Order Function
 void pharmacyManagementSystem::takeOrder() {
     system("CLS");
 	int i;
@@ -236,7 +233,7 @@ void pharmacyManagementSystem::takeOrder() {
         temp->amount[i] = temp->quantity[i] * temp->Medicine[temp->menu2[i]-1];
         totalPrice = totalPrice + temp->amount[i]; 
 	}
-    cout << "You've Been Charged With Amount Of Rs. "<< totalPrice << ".00" <<endl;
+    cout << "You've Been Charged With Amount Of Rs. "<< totalPrice << ".00" <<endl;    // Displaying The Total Price Charged
     out << "Total Price : Rs. " << totalPrice << ".00\n" << endl;
     out << "==================================\n"<< endl;
 	cout <<"==========================================================================="<<endl;
@@ -244,23 +241,27 @@ void pharmacyManagementSystem::takeOrder() {
     cout <<"==========================================================================="<<endl;
     cout << "Head To The Reciept Menu To Pay The Bill"<<endl;
     cout <<"==========================================================================="<<endl;
-	system ("PAUSE");
     temp->next=NULL;
 	if(start_ptr!=NULL)
 	{
 		temp->next=start_ptr;
 	}
 	start_ptr=temp;
-	system("CLS");
+	system("PAUSE");
+    system("CLS");
 }
 }
 
+// Delete Order Function
 void pharmacyManagementSystem::deleteOrder() {}
+
+// Modify Order/Customer Details Function
 void pharmacyManagementSystem::modify() {}
 
+// Order List Function
 void pharmacyManagementSystem::orderList() {
 	int i, num, num2;	
-	bool found = false;			// Search Variable
+	bool found = false;		// Search Variable
 	system("cls");
 	node *temp;
 	temp=start_ptr;
@@ -306,7 +307,7 @@ void pharmacyManagementSystem::orderList() {
 			cout<<"_____________________________________________________"<<endl;
             totalPrice = totalPrice + temp->amount[i]; 
 		}
-		cout<<"Total Bill : "<<" Rs."<< totalPrice << ".00" << endl;
+		cout<<"Total Bill : "<<" Rs."<< totalPrice << ".00" << endl;    // Displaying The Total Bill
 		cout<<"\n";
 		b: cout << "Type In The Amount To Be Payed : ";
            cin >> num;
@@ -326,26 +327,79 @@ void pharmacyManagementSystem::orderList() {
 		}
     }
 }
+system("PAUSE");
+system("CLS");
 }
 
-void pharmacyManagementSystem::dailySummary() {}
-void pharmacyManagementSystem::exit() {}
+// Daily Summary Function
+void pharmacyManagementSystem::dailySummary() {
+    int i,num;
+	system("CLS");
+	node *temp ;
+	temp=start_ptr;
+    float totalPrice = 0;
+
+	if(temp == NULL)    // Invalid Receipt Code
+	{
+		cout << "No Orders To Show!\n" << endl;
+	}
+	else
+	{
+		cout<<"\n";
+		cout<<"====================================================="<<endl;
+		cout <<"Daily Summary Of All Orders \n";    // Print All YTransactions Occurred
+		cout<<"====================================================="<<endl;
+
+		while(temp!=NULL)
+		{
+		cout <<"Reciept Number : "<<temp->recieptNumber;
+		cout <<"\n";
+		cout<<"Customer Name: "<<temp->customerName<<endl;
+		cout<<"Order Date : "<<temp->date<<endl;
+		cout<<"_____________________________________________________"<<endl;
+		cout << "=====================================================" << endl;
+		cout << "|  Medicine Name  |  	Quantity    |  Total Price  |" << endl;
+		cout << "=====================================================" << endl;
+		for (i=0;i<temp->x;i++)
+		{
+			cout<< "|    " <<temp->medicineName[temp->menu2[i]-1] << "     ";
+			cout<< "|        " <<temp->quantity[i] << "        ";
+			cout<< "|    " <<" Rs." << temp->amount[i]<< "    |" <<endl;
+			cout<<"_____________________________________________________"<<endl;
+            totalPrice = totalPrice + temp->amount[i]; 
+		}
+		cout<<"Total Bill : "<<" Rs."<< totalPrice << ".00" << endl;    // Displaying The Total Bill
+		cout <<"_____________________________________________________\n";
+				
+		temp=temp->next;
+        system("PAUSE");
+        system("CLS");
+		}
+	}
+}
+
+// Exit Function
+void pharmacyManagementSystem::exit() {
+    cout << "\nYou Chose To Exit" << endl;
+    cout << "Thank You So Much!\n" << endl;
+    system("PAUSE");
+}
 
 // Main Function
 int main(void)
 {
     system("CLS");
     pharmacyManagementSystem pharmacyManagementSystemObj;
-    cout << "\n\t\t\t    Pharmacy Management System \n";
-    cout << "\t\t==================================================\n\n";
-    cout << "\t\t--------------------------------------------------\n";
-    cout << "\t\t||\tFile Structure Mini Project \t\t||\n";
-    cout << "\t\t||\tBy : \t\t\t\t\t||\n";
-    cout << "\t\t||\tMayur Pai B H 4SF18IS053 \t\t||\n";
-    cout << "\t\t||\tPrathiksha Kamath 4SF18IS069 \t\t||\n";
-    cout << "\t\t--------------------------------------------------\n";
+    cout << "\n\t    Pharmacy Management System \n";
+    cout << "==================================================\n\n";
+    cout << "--------------------------------------------------\n";
+    cout << "||\tFile Structure Mini Project \t\t||\n";
+    cout << "||\tBy : \t\t\t\t\t||\n";
+    cout << "||\tMayur Pai B H 4SF18IS053 \t\t||\n";
+    cout << "||\tPrathiksha Kamath 4SF18IS069 \t\t||\n";
+    cout << "--------------------------------------------------\n";
     system("PAUSE");
     system("CLS");
-    pharmacyManagementSystemObj.mainMenu();
+    pharmacyManagementSystemObj.mainMenu();    // Calling Main Menu To Run
     return 0;
 }
