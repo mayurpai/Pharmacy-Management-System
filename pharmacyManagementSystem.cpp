@@ -241,7 +241,8 @@ void pharmacyManagementSystem::takeOrder()
     cin >> temp->recieptNumber;
     out << "Reciept Number : " << temp->recieptNumber << endl;
     cout << "Enter Customer Name: ";
-    cin >> temp->customerName;
+    cin.ignore();
+    getline(cin, temp->customerName);
     out << "Customer Name : " << temp->customerName << endl;
     cout << "Enter Date: ";
     cin >> temp->date;
@@ -387,7 +388,8 @@ void pharmacyManagementSystem::modify()
                 cin >> temp->recieptNumber;
                 out << "Reciept Number : " << temp->recieptNumber << endl;
                 cout << "Change Customer Name : ";
-                cin >> temp->customerName;
+                cin.ignore();
+                getline(cin, temp->customerName);
                 out << "Customer Name : " << temp->customerName << endl;
                 cout << "Change Date : ";
                 cin >> temp->date;
