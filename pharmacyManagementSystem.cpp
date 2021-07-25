@@ -630,7 +630,7 @@ int main(void)
     cout << "--------------------------------------------------\n";
     system("PAUSE");
     system("CLS");
-    pharmacyManagementSystemObj.mainMenu(); // Calling Main Menu To Run
+    pharmacyManagementSystemObj.mainMenu(); // Calling Of Main Menu To Run
     return 0;
 }
 /***************************************END OF PROGRAM***************************************/
