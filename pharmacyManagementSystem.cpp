@@ -86,6 +86,7 @@ node *start_ptr = NULL;
 node *head = NULL;
 node *last = NULL;
 
+// Main Menu
 void pharmacyManagementSystem::mainMenu()
 {
     pharmacyManagementSystem pharmacyManagementSystemObj;
