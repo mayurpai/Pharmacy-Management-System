@@ -573,8 +573,10 @@ void pharmacyManagementSystem::dailySummary()
 // Display Medicine Function
 void pharmacyManagementSystem::displayMedicine()
 {
-    cout << endl;
     system("CLS");
+    cout << "=====================================================" << endl;
+    cout << "Medicines In Stock \n"; // Print All Medicines In Stock
+    cout << "=====================================================" << endl;
     string takeOrderText;
     ifstream in("takeOrder.txt");
     for (int i = 0; i < 14; i++)
@@ -589,8 +591,10 @@ void pharmacyManagementSystem::displayMedicine()
 // Display Back-Up Customer Details
 void pharmacyManagementSystem::displayCustomers()
 {
-    cout << endl;
     system("CLS");
+    cout << "=====================================================" << endl;
+    cout << "Back-Up Customer Details \n"; // Print All Transactions Occurred
+    cout << "=====================================================" << endl;
     string takeCustomerInfo;
     ifstream in("takeCustomerInfo.txt");
     while (!in.eof())
