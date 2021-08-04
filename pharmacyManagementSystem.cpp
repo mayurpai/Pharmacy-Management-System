@@ -1,34 +1,23 @@
-/*  File Structure Mini Project On "Pharmacy Management System"
- *   By Mayur Pai B H & Prathiksha Kamath
+/* File Structure Mini Project On "Pharmacy Management System"
+ *  By Mayur Pai B H &Prathiksha Kamath
  */
 
 // Standard Libraries
 #include <iostream>
-
 #include <stdlib.h>
-
 #include <unistd.h>
-
 #include <string>
-
 #include <cstring>
-
 #include <cctype>
-
 #include <cmath>
-
 #include <cstdio>
-
 #include <fstream>
-
 #include <iomanip>
-
 #include <conio.h>
 
-// #include "stdafx.h"
-
+//
+#include "stdafx.h"
 #include <windows.h>
-
 #define MAX 10
 
 // Header File
@@ -37,59 +26,59 @@ using namespace std;
 // Base Class
 class pharmacyManagementSystem
 {
-public:
-    void mainMenu();            // Pharmacy Management System Main Menu
-    void search();              // Search For Certain Medicine
-    void takeOrder();           // Orders To Be Taken
-    void deleteOrder();         // Delete The Medicine
-    void modify();              // Modify The Medicine/ Customer Information
-    void orderList();           // Display The Order List
-    void dailySummary();        // Display The Summary List
-    void exit();                // Exit Function
-    void displayMedicine();     // Displays The Set Of Medicine
-    void displayCustomers();    // Displays The Set Of Customers - Back Up
-    void userSelection();       // Admin/Customer Selection
-    pharmacyManagementSystem(); // Constuctor
+    public_colon
+    void mainMenu();	// Pharmacy Management System Main Menu
+    void search();	// Search For Certain Medicine
+    void takeOrder();	// Orders To Be Taken
+    void deleteOrder();	// Delete The Medicine
+    void modify();	// Modify The Medicine/ Customer Information
+    void orderList();	// Display The Order List
+    void dailySummary();	// Display The Summary List
+    void exit();	// Exit Function
+    void displayMedicine();	// Displays The Set Of Medicine
+    void displayCustomers();	// Displays The Set Of Customers - Back Up
+    void userSelection();	// Admin/Customer Selection
+    pharmacyManagementSystem();	// Constuctor
 };
 
-pharmacyManagementSystem::pharmacyManagementSystem() {} // Constructor For Class pharmacyManagementSystem
+pharmacyManagementSystem::pharmacyManagementSystem() {}	// Constructor For Class pharmacyManagementSystem
 
 // Structure Of Type Node
 struct node
 {
     string customerName;
     string date;
-    string medicineName[MAX] = {
-        "Dolo 650",
-        "CITRA C",
-        "Bupropion",
-        "Zoloft",
-        "Sumitop",
-        "Omeprazole",
-        "Digene",
-        "HealthVit",
-        "Naproxen",
-        "Neurobion"};
+    string medicineName[MAX] = { "Dolo 650",
+                                 "CITRA C",
+                                 "Bupropion",
+                                 "Zoloft",
+                                 "Sumitop",
+                                 "Omeprazole",
+                                 "Digene",
+                                 "HealthVit",
+                                 "Naproxen",
+                                 "Neurobion"
+                               };
     int recieptNumber;
     int quantity[MAX];
     int x, menu2[MAX];
     float amount[MAX];
-    double Medicine[MAX] = {
-        200.00,
-        200.00,
-        500.00,
-        400.00,
-        500.00,
-        300.00,
-        100.00,
-        400.00,
-        300.00,
-        300.00};
+    double Medicine[MAX] = { 200.00,
+                             200.00,
+                             500.00,
+                             400.00,
+                             500.00,
+                             300.00,
+                             100.00,
+                             400.00,
+                             300.00,
+                             300.00
+                           };
     double total;
-    node *prev;
-    node *next;
-    node *link;
-} * q, *temp; // Pointer Of Type Node
+    node * prev;
+    node * next;
+    node * link;
+}*q, *temp;	// Pointer Of Type Node
 
 node *start_ptr = NULL;
 node *head = NULL;
@@ -100,8 +89,7 @@ void pharmacyManagementSystem::mainMenu()
 {
     pharmacyManagementSystem pharmacyManagementSystemObj;
     int choice;
-    do
-    {
+    do {
         cout << "\n\t    Pharmacy Management System \n";
         cout << "==================================================\n\n";
         cout << "--------------------------------------------------\n";
@@ -176,8 +164,8 @@ void pharmacyManagementSystem::mainMenu()
 
         default:
         {
-            cout << "You Entered An Invalid Key Input\nKindly, Re-enter The Input! \n"
-                 << endl;
+            cout << "You Entered An Invalid Key Input\nKindly, Re-enter The Input! \n" <<
+                 endl;
             break;
         }
         }
@@ -191,12 +179,12 @@ void pharmacyManagementSystem::search()
     string search;
     string line;
     int choice, i, offset, flag = 0;
-    node *temp;
+    node * temp;
     temp = new node;
     cout << "=====================================================" << endl;
     cout << "Search :\n";
     cout << "=====================================================" << endl;
-    cout << "Enter The Name Of The Medicine You Wish To Search : "; // Search For Medicine
+    cout << "Enter The Name Of The Medicine You Wish To Search : ";	// Search For Medicine
     cin.ignore();
     getline(cin, search);
     cout << endl;
@@ -208,6 +196,7 @@ void pharmacyManagementSystem::search()
             break;
         }
     }
+
     if (flag)
     {
         cout << "Found" << endl;
@@ -222,6 +211,7 @@ void pharmacyManagementSystem::search()
     {
         cout << "Medicine Stocked Out, Kindly Visit Tomorrow!" << endl;
     }
+
     system("PAUSE");
     system("CLS");
 }
@@ -235,17 +225,18 @@ void pharmacyManagementSystem::takeOrder()
     string takeOrderText;
     cout << "\nSelect The Medicines That You Would Like To Buy\n";
     cout << "------------------------------------------------ \n\n";
-    node *temp;
+    node * temp;
     temp = new node;
     // ofstream out("takeCustomerInfo.txt");
     ofstream out;
     out.open("takeCustomerInfo.txt", ios::out | ios::app);
-    ifstream in("takeOrder.txt");
+    ifstream in ("takeOrder.txt");
     for (i = 0; i < 14; i++)
     {
         getline(in, takeOrderText);
         cout << takeOrderText << endl;
     }
+
     cout << "" << endl;
     cout << "Type Reciept Number: ";
     cin >> temp->recieptNumber;
@@ -278,14 +269,15 @@ void pharmacyManagementSystem::takeOrder()
             cout << "Count Of The Respective Medicine : ";
             cin >> temp->quantity[i];
             out << "Medicine Quantity : " << temp->quantity[i] << endl;
-            temp->amount[i] = temp->quantity[i] * temp->Medicine[temp->menu2[i] - 1];
+            temp->amount[i] = temp->quantity[i] *temp->Medicine[temp->menu2[i] - 1];
             totalPrice = totalPrice + temp->amount[i];
         }
-        cout << "You've Been Charged With Amount Of Rs. " << totalPrice << ".00" << endl; // Displaying The Total Price Charged
-        out << "Total Price : Rs. " << totalPrice << ".00\n"
-            << endl;
-        out << "==================================\n"
-            << endl;
+
+        cout << "You've Been Charged With Amount Of Rs. " << totalPrice << ".00" << endl;	// Displaying The Total Price Charged
+        out << "Total Price : Rs. " << totalPrice << ".00\n" <<
+            endl;
+        out << "==================================\n" <<
+            endl;
         cout << "===========================================================================" << endl;
         cout << "Order Placed Successfully" << endl;
         cout << "===========================================================================" << endl;
@@ -296,6 +288,7 @@ void pharmacyManagementSystem::takeOrder()
         {
             temp->next = start_ptr;
         }
+
         start_ptr = temp;
         system("PAUSE");
         system("CLS");
@@ -312,8 +305,8 @@ void pharmacyManagementSystem::deleteOrder()
 
     cout << "Enter the Receipt Number You Wish To Delete : ";
     cin >> num;
-    node *q;
-    node *temp;
+    node * q;
+    node * temp;
     bool found;
 
     if (start_ptr == NULL)
@@ -345,6 +338,7 @@ void pharmacyManagementSystem::deleteOrder()
                 else
                     found = true;
             }
+
             if (found)
             {
                 temp->next = q->next;
@@ -355,8 +349,8 @@ void pharmacyManagementSystem::deleteOrder()
                 cout << "The Reciept is Deleted Successfully!" << endl;
             }
             else
-                cout << "Sorry, No Such Receipt Found!\n"
-                     << endl;
+                cout << "Sorry, No Such Receipt Found!\n" <<
+                     endl;
         }
     }
 }
@@ -369,7 +363,7 @@ void pharmacyManagementSystem::modify()
     bool found;
     found = false;
     float totalPrice = 0;
-    node *temp;
+    node * temp;
     temp = start_ptr;
     ofstream out;
     out.open("takeCustomerInfo.txt", ios::out | ios::app);
@@ -392,6 +386,7 @@ void pharmacyManagementSystem::modify()
             {
                 temp = temp->next;
             }
+
             if (found)
             {
                 cout << "Change Reciept Number : ";
@@ -425,17 +420,19 @@ void pharmacyManagementSystem::modify()
                         cout << "Count Of The Respective Medicine : ";
                         cin >> temp->quantity[i];
                         out << "Medicine Quantity : " << temp->quantity[i] << endl;
-                        temp->amount[i] = temp->quantity[i] * temp->Medicine[temp->menu2[i] - 1];
+                        temp->amount[i] = temp->quantity[i] *temp->Medicine[temp->menu2[i] - 1];
                         totalPrice = totalPrice + temp->amount[i];
                     }
-                    cout << "You've Been Charged With Amount Of Rs. " << totalPrice << ".00" << endl; // Displaying The Total Price Charged
-                    out << "Total Price : Rs. " << totalPrice << ".00\n"
-                        << endl;
-                    out << "==================================\n"
-                        << endl;
+
+                    cout << "You've Been Charged With Amount Of Rs. " << totalPrice << ".00" << endl;	// Displaying The Total Price Charged
+                    out << "Total Price : Rs. " << totalPrice << ".00\n" <<
+                        endl;
+                    out << "==================================\n" <<
+                        endl;
                     temp = temp->next;
                     system("CLS");
                 }
+
                 cout << "Record Modification Successful!" << endl;
             }
             else
@@ -453,9 +450,9 @@ void pharmacyManagementSystem::modify()
 void pharmacyManagementSystem::orderList()
 {
     int i, num, num2;
-    bool found = false; // Search Variable
+    bool found = false;	// Search Variable
     system("cls");
-    node *temp;
+    node * temp;
     temp = start_ptr;
     float totalPrice = 0;
 
@@ -466,10 +463,11 @@ void pharmacyManagementSystem::orderList()
     cout << "List Of Orders :\n";
     cout << "=====================================================" << endl;
 
-    if (temp == NULL) // Entered Receipt Number Is Invalid
+    if (temp == NULL)	// Entered Receipt Number Is Invalid
     {
         cout << "No Such Receipt Number Found In Our Record!\nKindly Enter The Correct Receipt Number\n\n";
     }
+
     while (temp != NULL && !found)
     {
         if (temp->recieptNumber == num2)
@@ -480,7 +478,8 @@ void pharmacyManagementSystem::orderList()
         {
             temp = temp->next;
         }
-        if (found) // Print The Receipt
+
+        if (found)	// Print The Receipt
         {
             cout << "Reciept Number : " << temp->recieptNumber;
             cout << "\n";
@@ -494,21 +493,22 @@ void pharmacyManagementSystem::orderList()
             {
                 cout << "|    " << temp->medicineName[temp->menu2[i] - 1] << "     ";
                 cout << "|        " << temp->quantity[i] << "        ";
-                cout << "|    "
-                     << " Rs." << temp->amount[i] << "    |" << endl;
+                cout << "|    " <<
+                     " Rs." << temp->amount[i] << "    |" << endl;
                 cout << "_____________________________________________________" << endl;
                 totalPrice = totalPrice + temp->amount[i];
             }
-            cout << "Total Bill : "
-                 << " Rs." << totalPrice << ".00" << endl; // Displaying The Total Bill
+
+            cout << "Total Bill : " <<
+                 " Rs." << totalPrice << ".00" << endl;	// Displaying The Total Bill
             cout << "\n";
-        b:
+b:
             cout << "Type In The Amount To Be Payed : ";
             cin >> num;
             if (num < totalPrice)
             {
-                cout << "Kindly Pay The Prescribed Amount!\n"
-                     << endl;
+                cout << "Kindly Pay The Prescribed Amount!\n" <<
+                     endl;
                 goto b;
             }
             else if (num > totalPrice)
@@ -525,6 +525,7 @@ void pharmacyManagementSystem::orderList()
             }
         }
     }
+
     system("PAUSE");
     system("CLS");
 }
@@ -534,20 +535,20 @@ void pharmacyManagementSystem::dailySummary()
 {
     int i, num;
     system("CLS");
-    node *temp;
+    node * temp;
     temp = start_ptr;
     float totalPrice = 0;
 
-    if (temp == NULL) // Invalid Receipt Code
+    if (temp == NULL)	// Invalid Receipt Code
     {
-        cout << "No Orders To Show!\n"
-             << endl;
+        cout << "No Orders To Show!\n" <<
+             endl;
     }
     else
     {
         cout << "\n";
         cout << "=====================================================" << endl;
-        cout << "Daily Summary Of All Orders \n"; // Print All Transactions Occurred
+        cout << "Daily Summary Of All Orders \n";	// Print All Transactions Occurred
         cout << "=====================================================" << endl;
 
         while (temp != NULL)
@@ -564,18 +565,20 @@ void pharmacyManagementSystem::dailySummary()
             {
                 cout << "|    " << temp->medicineName[temp->menu2[i] - 1] << "     ";
                 cout << "|        " << temp->quantity[i] << "        ";
-                cout << "|    "
-                     << " Rs." << temp->amount[i] << "    |" << endl;
+                cout << "|    " <<
+                     " Rs." << temp->amount[i] << "    |" << endl;
                 cout << "_____________________________________________________" << endl;
                 totalPrice = totalPrice + temp->amount[i];
             }
-            cout << "Total Bill : "
-                 << " Rs." << totalPrice << ".00" << endl; // Displaying The Total Bill
+
+            cout << "Total Bill : " <<
+                 " Rs." << totalPrice << ".00" << endl;	// Displaying The Total Bill
             cout << "_____________________________________________________\n";
 
             temp = temp->next;
         }
     }
+
     system("PAUSE");
     system("CLS");
 }
@@ -585,15 +588,16 @@ void pharmacyManagementSystem::displayMedicine()
 {
     system("CLS");
     cout << "=====================================================" << endl;
-    cout << "Medicines In Stock \n"; // Print All Medicines In Stock
+    cout << "Medicines In Stock \n";	// Print All Medicines In Stock
     cout << "=====================================================" << endl;
     string takeOrderText;
-    ifstream in("takeOrder.txt");
+    ifstream in ("takeOrder.txt");
     for (int i = 0; i < 14; i++)
     {
         getline(in, takeOrderText);
         cout << takeOrderText << endl;
     }
+
     cout << "" << endl;
     system("PAUSE");
     system("CLS");
@@ -604,15 +608,16 @@ void pharmacyManagementSystem::displayCustomers()
 {
     system("CLS");
     cout << "=====================================================" << endl;
-    cout << "Back-Up Customer Details \n"; // Print All Transactions Occurred
+    cout << "Back-Up Customer Details \n";	// Print All Transactions Occurred
     cout << "=====================================================" << endl;
     string takeCustomerInfo;
-    ifstream in("takeCustomerInfo.txt");
-    while (!in.eof())
+    ifstream in ("takeCustomerInfo.txt");
+    while (! in .eof())
     {
         getline(in, takeCustomerInfo);
         cout << takeCustomerInfo << endl;
     }
+
     system("PAUSE");
     system("CLS");
 }
@@ -621,15 +626,15 @@ void pharmacyManagementSystem::displayCustomers()
 void pharmacyManagementSystem::exit()
 {
     cout << "\nYou Chose To Exit" << endl;
-    cout << "Thank You So Much!\n"
-         << endl;
+    cout << "Thank You So Much!\n" <<
+         endl;
     system("PAUSE");
 }
 
 void delay(int milliseconds)
 {
     clock_t start = clock();
-    while ((clock() - start) * 1000 / CLOCKS_PER_SEC < milliseconds)
+    while ((clock() - start) *1000 / CLOCKS_PER_SEC < milliseconds)
         ;
 }
 
@@ -639,8 +644,7 @@ void pharmacyManagementSystem::userSelection()
     string userName, passWord = "";
     int choice;
     int L_PER_INCR = 2;
-    do
-    {
+    do {
         cout << "\n\t    Pharmacy Management System \n";
         cout << "==================================================\n\n";
         cout << "--------------------------------------------------\n";
@@ -662,8 +666,8 @@ void pharmacyManagementSystem::userSelection()
             getline(cin, passWord);
             if (!(strcmp((userName.c_str()), ("Mayur Pai"))) && (passWord == "12345") || !(strcmp((userName.c_str()), ("Prathiksha Kamath"))) && !(strcmp((passWord.c_str()), ("54321"))))
             {
-                cout << "\n******************Access Granted******************\n"
-                     << endl;
+                cout << "\n******************Access Granted******************\n" <<
+                     endl;
                 sleep(3);
                 for (int i = 0; i <= 100; i++)
                 {
@@ -675,9 +679,10 @@ void pharmacyManagementSystem::userSelection()
                     cout << " " << i << " %";
                     delay(10 / L_PER_INCR);
                 }
+
                 sleep(1);
                 system("CLS");
-                mainMenu(); // Calling Of Main Menu To Run
+                mainMenu();	// Calling Of Main Menu To Run
             }
             else
             {
@@ -685,6 +690,7 @@ void pharmacyManagementSystem::userSelection()
                 system("PAUSE");
                 system("CLS");
             }
+
             break;
         }
 
@@ -692,8 +698,7 @@ void pharmacyManagementSystem::userSelection()
         {
             system("CLS");
             int c;
-            do
-            {
+            do {
                 cout << "\n\t    Pharmacy Management System \n";
                 cout << "==================================================\n\n";
                 cout << "--------------------------------------------------\n";
@@ -710,11 +715,13 @@ void pharmacyManagementSystem::userSelection()
                     search();
                     break;
                 }
+
                 case 2:
                 {
                     displayMedicine();
                     break;
                 }
+
                 case 3:
                 {
                     exit();
@@ -724,23 +731,25 @@ void pharmacyManagementSystem::userSelection()
 
                 default:
                 {
-                    cout << "You Entered An Invalid Key Input\nKindly, Re-enter The Input! \n"
-                         << endl;
+                    cout << "You Entered An Invalid Key Input\nKindly, Re-enter The Input! \n" <<
+                         endl;
                     break;
                 }
                 }
             } while (c != 3);
             break;
         }
+
         case 3:
         {
             exit();
             break;
         }
+
         default:
         {
-            cout << "You Entered An Invalid Key Input\nKindly, Re-enter The Input! \n"
-                 << endl;
+            cout << "You Entered An Invalid Key Input\nKindly, Re-enter The Input! \n" <<
+                 endl;
             break;
         }
         }
@@ -758,8 +767,7 @@ void Type(const char *p)
         ::Sleep(1);
         printf("\b \b");
         ::Sleep(1);
-    }
-    ::Sleep(1);
+    }::Sleep(1);
 }
 
 // Main Function
@@ -777,7 +785,8 @@ int main(void)
     Type("--------------------------------------------------\n");
     sleep(2);
     system("CLS");
-    pharmacyManagementSystemObj.userSelection(); // Calling User Selection Page To Run
+    pharmacyManagementSystemObj.userSelection();	// Calling User Selection Page To Run
     return 0;
 }
+
 /***************************************END OF PROGRAM***************************************/
