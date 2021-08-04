@@ -23,6 +23,12 @@
 
 #include <iomanip>
 
+#include <conio.h>
+
+// #include "stdafx.h"
+
+#include <windows.h>
+
 #define MAX 10
 
 // Header File
@@ -42,6 +48,7 @@ public:
     void exit();                // Exit Function
     void displayMedicine();     // Displays The Set Of Medicine
     void displayCustomers();    // Displays The Set Of Customers - Back Up
+    void userSelection();       // Admin/Customer Selection
     pharmacyManagementSystem(); // Constuctor
 };
 
@@ -98,7 +105,7 @@ void pharmacyManagementSystem::mainMenu()
         cout << "\n\t    Pharmacy Management System \n";
         cout << "==================================================\n\n";
         cout << "--------------------------------------------------\n";
-        cout << "||\t1. Search For The Medicine  \t||\n";
+        cout << "||\t1. Search For The Medicine  \t\t||\n";
         cout << "||\t2. New Medicine Order \t\t\t||\n";
         cout << "||\t3. Delete Latest Medicine Order Details ||\n";
         cout << "||\t4. Modify Order List \t\t\t||\n";
@@ -589,6 +596,7 @@ void pharmacyManagementSystem::displayMedicine()
     }
     cout << "" << endl;
     system("PAUSE");
+    system("CLS");
 }
 
 // Display Back-Up Customer Details
@@ -606,6 +614,7 @@ void pharmacyManagementSystem::displayCustomers()
         cout << takeCustomerInfo << endl;
     }
     system("PAUSE");
+    system("CLS");
 }
 
 // Exit Function
@@ -617,22 +626,158 @@ void pharmacyManagementSystem::exit()
     system("PAUSE");
 }
 
+void delay(int milliseconds)
+{
+    clock_t start = clock();
+    while ((clock() - start) * 1000 / CLOCKS_PER_SEC < milliseconds)
+        ;
+}
+
+// Admin/Customer Selection
+void pharmacyManagementSystem::userSelection()
+{
+    string userName, passWord = "";
+    int choice;
+    int L_PER_INCR = 2;
+    do
+    {
+        cout << "\n\t    Pharmacy Management System \n";
+        cout << "==================================================\n\n";
+        cout << "--------------------------------------------------\n";
+        cout << "||\t1. Admin \t\t\t\t||\n";
+        cout << "||\t2. Customer \t\t\t\t||\n";
+        cout << "||\t3. Exit \t\t\t\t||\n";
+        cout << "--------------------------------------------------\n";
+        cout << "Enter Your Choice: ";
+        cin >> choice;
+        switch (choice)
+        {
+        case 1:
+        {
+            cout << "\nEnter The Username : ";
+            cin.ignore();
+            getline(cin, userName);
+            cin.ignore();
+            cout << "Enter The Password : ";
+            getline(cin, passWord);
+            if (!(strcmp((userName.c_str()), ("Mayur Pai"))) && (passWord == "12345") || !(strcmp((userName.c_str()), ("Prathiksha Kamath"))) && !(strcmp((passWord.c_str()), ("54321"))))
+            {
+                cout << "\n******************Access Granted******************\n"
+                     << endl;
+                sleep(3);
+                for (int i = 0; i <= 100; i++)
+                {
+                    system("CLS");
+                    cout << "\n";
+                    cout << "LOADING : ";
+                    for (int j = 0; j < i / L_PER_INCR; j++)
+                        cout << char(219);
+                    cout << " " << i << " %";
+                    delay(10 / L_PER_INCR);
+                }
+                sleep(1);
+                system("CLS");
+                mainMenu(); // Calling Of Main Menu To Run
+            }
+            else
+            {
+                cout << "\n******************Access Denied*******************\n\n";
+                system("PAUSE");
+                system("CLS");
+            }
+            break;
+        }
+
+        case 2:
+        {
+            system("CLS");
+            int c;
+            do
+            {
+                cout << "\n\t    Pharmacy Management System \n";
+                cout << "==================================================\n\n";
+                cout << "--------------------------------------------------\n";
+                cout << "||\t1. Search For The Medicine  \t\t||\n";
+                cout << "||\t2. Display Available Medicine \t\t||\n";
+                cout << "||\t3. Exit \t\t\t\t||\n";
+                cout << "--------------------------------------------------\n";
+                cout << "Enter Your Choice: ";
+                cin >> c;
+                switch (c)
+                {
+                case 1:
+                {
+                    search();
+                    break;
+                }
+                case 2:
+                {
+                    displayMedicine();
+                    break;
+                }
+                case 3:
+                {
+                    exit();
+                    system("CLS");
+                    break;
+                }
+
+                default:
+                {
+                    cout << "You Entered An Invalid Key Input\nKindly, Re-enter The Input! \n"
+                         << endl;
+                    break;
+                }
+                }
+            } while (c != 3);
+            break;
+        }
+        case 3:
+        {
+            exit();
+            break;
+        }
+        default:
+        {
+            cout << "You Entered An Invalid Key Input\nKindly, Re-enter The Input! \n"
+                 << endl;
+            break;
+        }
+        }
+    } while (choice != 3);
+}
+
+void Type(const char *p)
+{
+    if (NULL == p)
+        return;
+
+    while (*p)
+    {
+        printf("%c\xDB", *p++);
+        ::Sleep(1);
+        printf("\b \b");
+        ::Sleep(1);
+    }
+    ::Sleep(1);
+}
+
 // Main Function
 int main(void)
 {
     system("CLS");
     pharmacyManagementSystem pharmacyManagementSystemObj;
-    cout << "\n\t    Pharmacy Management System \n";
-    cout << "==================================================\n\n";
-    cout << "--------------------------------------------------\n";
-    cout << "||\tFile Structure Mini Project \t\t||\n";
-    cout << "||\tBy : \t\t\t\t\t||\n";
-    cout << "||\tMayur Pai B H 4SF18IS053 \t\t||\n";
-    cout << "||\tPrathiksha Kamath 4SF18IS069 \t\t||\n";
-    cout << "--------------------------------------------------\n";
-    sleep(7);
+    Type("\n\t    Pharmacy Management System \n");
+    Type("==================================================\n\n");
+    Type("--------------------------------------------------\n");
+    Type("||\tFile Structure Mini Project \t\t||\n");
+    Type("||\tBy : \t\t\t\t\t||\n");
+    Type("||\tMayur Pai B H 4SF18IS053 \t\t||\n");
+    Type("||\tPrathiksha Kamath 4SF18IS069 \t\t||\n");
+    Type("--------------------------------------------------\n");
+    sleep(2);
     system("CLS");
-    pharmacyManagementSystemObj.mainMenu(); // Calling Of Main Menu To Run
+    pharmacyManagementSystemObj.userSelection(); // Calling User Selection Page To Run
     return 0;
 }
 /***************************************END OF PROGRAM***************************************/
