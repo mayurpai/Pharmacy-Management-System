@@ -98,7 +98,7 @@ void pharmacyManagementSystem::mainMenu()
         cout << "\n\t    Pharmacy Management System \n";
         cout << "==================================================\n\n";
         cout << "--------------------------------------------------\n";
-        cout << "||\t1. Search For The Medicine \t||\n";
+        cout << "||\t1. Search For The Medicine  \t||\n";
         cout << "||\t2. New Medicine Order \t\t\t||\n";
         cout << "||\t3. Delete Latest Medicine Order Details ||\n";
         cout << "||\t4. Modify Order List \t\t\t||\n";
