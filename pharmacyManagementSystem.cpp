@@ -23,6 +23,12 @@
 
 #include <iomanip>
 
+#include <conio.h>
+
+// #include "stdafx.h"
+
+#include <windows.h>
+
 #define MAX 10
 
 // Header File
@@ -630,7 +636,7 @@ void delay(int milliseconds)
 // Admin/Customer Selection
 void pharmacyManagementSystem::userSelection()
 {
-    string userName, passWord;
+    string userName, passWord = "";
     int choice;
     int L_PER_INCR = 2;
     do
@@ -654,7 +660,7 @@ void pharmacyManagementSystem::userSelection()
             cin.ignore();
             cout << "Enter The Password : ";
             getline(cin, passWord);
-            if (!(strcmp((userName.c_str()), ("Mayur Pai"))) && !(strcmp((passWord.c_str()), ("12345"))) || !(strcmp((userName.c_str()), ("Prathiksha Kamath"))) && !(strcmp((passWord.c_str()), ("54321"))))
+            if (!(strcmp((userName.c_str()), ("Mayur Pai"))) && (passWord == "12345") || !(strcmp((userName.c_str()), ("Prathiksha Kamath"))) && !(strcmp((passWord.c_str()), ("54321"))))
             {
                 cout << "\n******************Access Granted******************\n"
                      << endl;
@@ -667,7 +673,7 @@ void pharmacyManagementSystem::userSelection()
                     for (int j = 0; j < i / L_PER_INCR; j++)
                         cout << char(219);
                     cout << " " << i << " %";
-                    delay(100 / L_PER_INCR);
+                    delay(10 / L_PER_INCR);
                 }
                 sleep(1);
                 system("CLS");
@@ -741,20 +747,35 @@ void pharmacyManagementSystem::userSelection()
     } while (choice != 3);
 }
 
+void Type(const char *p)
+{
+    if (NULL == p)
+        return;
+
+    while (*p)
+    {
+        printf("%c\xDB", *p++);
+        ::Sleep(1);
+        printf("\b \b");
+        ::Sleep(1);
+    }
+    ::Sleep(1);
+}
+
 // Main Function
 int main(void)
 {
     system("CLS");
     pharmacyManagementSystem pharmacyManagementSystemObj;
-    cout << "\n\t    Pharmacy Management System \n";
-    cout << "==================================================\n\n";
-    cout << "--------------------------------------------------\n";
-    cout << "||\tFile Structure Mini Project \t\t||\n";
-    cout << "||\tBy : \t\t\t\t\t||\n";
-    cout << "||\tMayur Pai B H 4SF18IS053 \t\t||\n";
-    cout << "||\tPrathiksha Kamath 4SF18IS069 \t\t||\n";
-    cout << "--------------------------------------------------\n";
-    sleep(1);
+    Type("\n\t    Pharmacy Management System \n");
+    Type("==================================================\n\n");
+    Type("--------------------------------------------------\n");
+    Type("||\tFile Structure Mini Project \t\t||\n");
+    Type("||\tBy : \t\t\t\t\t||\n");
+    Type("||\tMayur Pai B H 4SF18IS053 \t\t||\n");
+    Type("||\tPrathiksha Kamath 4SF18IS069 \t\t||\n");
+    Type("--------------------------------------------------\n");
+    sleep(2);
     system("CLS");
     pharmacyManagementSystemObj.userSelection(); // Calling User Selection Page To Run
     return 0;
