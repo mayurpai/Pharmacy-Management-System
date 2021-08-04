@@ -7,6 +7,8 @@
 
 #include <stdlib.h>
 
+#include <unistd.h>
+
 #include <string>
 
 #include <cstring>
@@ -628,7 +630,7 @@ int main(void)
     cout << "||\tMayur Pai B H 4SF18IS053 \t\t||\n";
     cout << "||\tPrathiksha Kamath 4SF18IS069 \t\t||\n";
     cout << "--------------------------------------------------\n";
-    system("PAUSE");
+    sleep(7);
     system("CLS");
     pharmacyManagementSystemObj.mainMenu(); // Calling Of Main Menu To Run
     return 0;
