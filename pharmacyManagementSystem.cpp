@@ -632,6 +632,7 @@ int main(void)
     cout << "--------------------------------------------------\n";
     sleep(7);
     system("CLS");
+    // Admin
     pharmacyManagementSystemObj.mainMenu(); // Calling Of Main Menu To Run
     return 0;
 }
